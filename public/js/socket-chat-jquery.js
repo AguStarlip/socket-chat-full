@@ -8,11 +8,22 @@ var divUsuarios = $('#divUsuarios');
 var formEnviar = $('#formEnviar');
 var txtMensaje = $('#txtMensaje');
 var divChatbox = $('#divChatbox');
+var divTitle = $('#divTitle');
 
 // Funciones renderizar usuarios
 
+function renderizarSalaTitulo() {
+
+    var html = '';
+
+    html += '<h3 class="box-title">';
+    html += '  Sala de chat <small>' + params.get('sala') + '</small>';
+    html += '</h3>';
+
+    divTitle.html(html);
+}
+
 function renderizarUsuarios(personas) {
-    console.log(personas);
 
     var html = '';
 
