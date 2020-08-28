@@ -9,6 +9,8 @@ var formEnviar = $('#formEnviar');
 var txtMensaje = $('#txtMensaje');
 var divChatbox = $('#divChatbox');
 var divTitle = $('#divTitle');
+var divPanel = $('#open-panel');
+var divChatPanel = $('#chat-left-aside');
 
 // Funciones renderizar usuarios
 
@@ -33,7 +35,7 @@ function renderizarUsuarios(personas) {
 
     for (var i = 0; i < personas.length; i++) {
         html += '<li>';
-        html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
+        html += '    <a data-id="' + personas[i].id + '" href="javascript:void(0)"><img src="assets/images/users/profile.jpg" alt="user-img" class="img-circle"> <span>' + personas[i].nombre + ' <small class="text-success">online</small></span></a>';
         html += '</li>';
     }
 
@@ -58,14 +60,14 @@ function renderizarMensajes(mensaje, yo) {
         html += '    <div class="box bg-light-inverse">' + mensaje.mensaje + '</div>';
         html += '  </div>';
         html += '  <div class="chat-img">';
-        html += '    <img src="assets/images/users/5.jpg" alt="user" />';
+        html += '    <img src="assets/images/users/profile.jpg" alt="user" />';
         html += '  </div>';
         html += '  <div class="chat-time">' + hora + '</div>';
         html += '</li>';
     } else {
         html += '<li class="animated fadeIn">';
         if (mensaje.nombre !== 'Administrador') {
-            html += '    <div class="chat-img"><img src="assets/images/users/1.jpg" alt="user" /></div>';
+            html += '    <div class="chat-img"><img src="assets/images/users/profile.jpg" alt="user" /></div>';
         }
         html += '    <div class="chat-content">';
         html += '        <h5>' + mensaje.nombre + '</h5>';
@@ -95,6 +97,20 @@ function scrollBottom() {
         divChatbox.scrollTop(scrollHeight);
     }
 }
+
+// Desplegar panel del chat mobile
+
+divPanel.click(function() {
+    var slideLeft = $(this).hasClass('class1') ? '0%' : '-250px';
+    divChatPanel.animate({ left: slideLeft }, "fast");
+    if (divPanel.hasClass('class1')) {
+        divPanel.removeClass('class1');
+    } else {
+        divPanel.addClass('class1');
+    }
+});
+
+
 
 // Listeners
 divUsuarios.on('click', 'a', function() {
